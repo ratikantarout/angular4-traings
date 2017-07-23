@@ -24,7 +24,6 @@ export class DclWrapper {
         let factory = this.componentFactoryResolver.resolveComponentFactory(this.type);
         this.cmpRef = this.target.createComponent(factory)
         this.cmpRef.instance.someProperty = this.dataParms;
-        // this.cmpRef.instance.someOutput.subscribe(val => this.doSomething());
         this.cdRef.detectChanges();
     }
     ngOnChanges() {
