@@ -6,12 +6,14 @@ import { Component, Compiler, ViewContainerRef, ViewChild, Input, ComponentRef, 
 export class DclWrapper {
     @ViewChild('target', { read: ViewContainerRef }) target;
     @Input() type;
+    @Input() dataParms;
     cmpRef: ComponentRef<any>;
     private isViewInitialized: boolean = false;
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
         private compiler: Compiler,
-        private cdRef: ChangeDetectorRef) { }
+        private cdRef: ChangeDetectorRef) {
+    }
     updateComponent() {
         if (!this.isViewInitialized) {
             return;
@@ -21,9 +23,8 @@ export class DclWrapper {
         }
         let factory = this.componentFactoryResolver.resolveComponentFactory(this.type);
         this.cmpRef = this.target.createComponent(factory)
-        // to access the created instance use
-        // this.compRef.instance.someProperty = 'someValue';
-        // this.compRef.instance.someOutput.subscribe(val => doSomething());
+        this.cmpRef.instance.someProperty = this.dataParms;
+        // this.cmpRef.instance.someOutput.subscribe(val => this.doSomething());
         this.cdRef.detectChanges();
     }
     ngOnChanges() {

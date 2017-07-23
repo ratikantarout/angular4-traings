@@ -1,6 +1,6 @@
 <div class="tab-content ">
     <div class="tab-pane" id="{{j}}" *ngFor="let tab of tabs; let j = index">
-        <dcl-wrapper [type]="tab"></dcl-wrapper>
+        <dcl-wrapper [type]="tab" [dataParms]="tabsParms[j]"></dcl-wrapper>
     </div>
 </div>
 <ul class="nav nav-tabs">
